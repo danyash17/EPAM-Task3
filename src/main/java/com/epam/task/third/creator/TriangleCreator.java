@@ -1,24 +1,33 @@
 package com.epam.task.third.creator;
 
-import com.epam.task.third.figures.entities.Point;
-import com.epam.task.third.figures.logics.Triangle;
+import com.epam.task.third.parser.TriangleParser;
+import com.epam.task.third.figures.entities.Triangle;
+import com.epam.task.third.reader.DataException;
+import com.epam.task.third.reader.DataReader;
+import com.epam.task.third.validator.DataValidator;
+import com.epam.task.third.validator.TriangleValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TriangleCreator {
-    public Triangle create(String properties){
-        char[] allChars=properties.toCharArray();
-        char[] onlyNumbers=new char[6];
-        for(int i=0,j=0;i<properties.length();i++){
-            if(allChars[i]=='('){
-                onlyNumbers[j]=allChars[i+1];
-                j++;
-                onlyNumbers[j]=allChars[i+3];
-                j++;
+    private static Logger LOGGER = LogManager.getLogger(TriangleCreator.class);
+
+    public List<Triangle> compose(final String filepath,DataReader reader,DataValidator dataValidator,TriangleParser triangleParser,TriangleValidator triangleValidator) throws DataException {
+        List<String> stringList = reader.readData(filepath);
+        List<Triangle> triangleList = new ArrayList<>();
+        for (int i = 0; i < stringList.size(); i++) {
+            String current = stringList.get(i);
+            if (dataValidator.validate(current)) {
+                LOGGER.info("Creating another triangle");
+                Triangle newTriangle = triangleParser.create(current);
+                if (triangleValidator.isExistingTriangle(newTriangle)) {
+                    triangleList.add(newTriangle);
+                }
             }
         }
-        Point first=new Point(Double.parseDouble(Character.toString(onlyNumbers[0])),Double.parseDouble(Character.toString(onlyNumbers[1])));
-        Point second=new Point(Double.parseDouble(Character.toString(onlyNumbers[2])),Double.parseDouble(Character.toString(onlyNumbers[3])));
-        Point third=new Point(Double.parseDouble(Character.toString(onlyNumbers[4])),Double.parseDouble(Character.toString(onlyNumbers[5])));
-        Triangle triangle=new Triangle(first,second,third);
-        return triangle;
+        return triangleList;
     }
 }

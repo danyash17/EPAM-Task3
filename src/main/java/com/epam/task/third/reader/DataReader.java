@@ -6,12 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.epam.task.third.creator.TriangleCreator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class DataReader {
+    private static Logger LOGGER = LogManager.getLogger(TriangleCreator.class);
 
     public List<String> readData(final String filename) throws DataException {
+        List<String> rawData = new ArrayList<>();
+        FileReader inputStream = null;
         try {
-            List<String> rawData = new ArrayList<>();
-            FileReader inputStream = new FileReader(filename);
+            inputStream = new FileReader(filename);
             Scanner scanner = new Scanner(inputStream);
             while (scanner.hasNextLine()) {
                 rawData.add(scanner.nextLine());
@@ -19,7 +25,16 @@ public class DataReader {
             inputStream.close();
             return rawData;
         } catch (IOException e) {
-            throw new DataException(e.getMessage(),e);
+            LOGGER.warn("Something is not good with File Data");
+            throw new DataException(e.getMessage(), e);
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    LOGGER.warn("Stream exception");
+                }
+            }
         }
     }
 }
