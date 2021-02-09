@@ -22,6 +22,7 @@ public class TriangleCalculatorTest {
         Triangle triangle = new Triangle(FIRST, SECOND, THIRD);
         //when
         double result = triangleCalculator.getArea(triangle);
+        //then
         assertEquals(result, ACTUAL_AREA, EPS);
     }
 
@@ -41,8 +42,10 @@ public class TriangleCalculatorTest {
         //given
         TriangleCalculator triangleCalculator = new TriangleCalculator();
         Triangle triangle = new Triangle(FIRST, SECOND, THIRD);
-        //when,then
-        assertTrue(triangleCalculator.isIsoscelesTriangle(triangle));
+        //when
+        boolean result = triangleCalculator.isIsoscelesTriangle(triangle);
+        //then
+        assertTrue(result);
     }
 
     @Test
@@ -50,8 +53,10 @@ public class TriangleCalculatorTest {
         //given
         TriangleCalculator triangleCalculator = new TriangleCalculator();
         Triangle triangle = new Triangle(FIRST_RIGHT, SECOND, THIRD);
-        //when,then
-        assertTrue(triangleCalculator.isRightTriangle(triangle));
+        //when
+        boolean result = triangleCalculator.isRightTriangle(triangle);
+        //then
+        assertTrue(result);
     }
 
     @Test
@@ -59,8 +64,10 @@ public class TriangleCalculatorTest {
         //given
         TriangleCalculator triangleCalculator = new TriangleCalculator();
         Triangle triangle = new Triangle(FIRST, SECOND, THIRD);
-        //when,then
-        assertFalse(triangleCalculator.isObtuseTriangle(triangle));
+        //when
+        boolean result = triangleCalculator.isObtuseTriangle(triangle);
+        //then
+        assertFalse(result);
     }
 
     @Test
@@ -68,8 +75,10 @@ public class TriangleCalculatorTest {
         //given
         TriangleCalculator triangleCalculator = new TriangleCalculator();
         Triangle triangle = new Triangle(FIRST, SECOND, THIRD);
-        //when,then
-        assertTrue(triangleCalculator.isAcuteTriangle(triangle));
+        //when
+        boolean result = triangleCalculator.isAcuteTriangle(triangle);
+        //then
+        assertTrue(result);
     }
 
     @Test
@@ -77,7 +86,9 @@ public class TriangleCalculatorTest {
         //given
         TriangleCalculator triangleCalculator = new TriangleCalculator();
         Triangle triangle = new Triangle(FIRST, SECOND, THIRD);
-        //when,then
-        assertFalse(triangleCalculator.isEquilateralTriangle(triangle));
+        //when
+        boolean result = triangleCalculator.isEquilateralTriangle(triangle);
+        //then
+        assertFalse(result);
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class TriangleCreator {
     private static Logger LOGGER = LogManager.getLogger(TriangleCreator.class);
 
-    public List<Triangle> compose(final String filepath,DataReader reader,DataValidator dataValidator,TriangleParser triangleParser,TriangleValidator triangleValidator) throws DataException {
+    public List<Triangle> compose(final String filepath, DataReader reader, DataValidator dataValidator, TriangleParser triangleParser, TriangleValidator triangleValidator) throws DataException {
         List<String> stringList = reader.readData(filepath);
         List<Triangle> triangleList = new ArrayList<>();
         for (int i = 0; i < stringList.size(); i++) {

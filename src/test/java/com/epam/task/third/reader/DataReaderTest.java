@@ -1,10 +1,5 @@
 package com.epam.task.third.reader;
-
-import org.junit.Assert;
 import org.junit.Test;
-
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

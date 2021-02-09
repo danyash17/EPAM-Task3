@@ -6,10 +6,10 @@ import com.epam.task.third.figures.entities.Triangle;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
-import java.util.regex.Matcher;
 
 public class TriangleCalculator {
-    private double eps=10e-3;
+    private double eps = 10e-3;
+
     private double countSide(Point from, Point to) {
         double result = Math.sqrt((from.getX() - to.getX()) * (from.getX() - to.getX()) +
                 (from.getY() - to.getY()) * (from.getY() - to.getY()));
@@ -47,9 +47,9 @@ public class TriangleCalculator {
         double sideA = countSide(triangle.getFirst(), triangle.getSecond());
         double sideB = countSide(triangle.getSecond(), triangle.getThird());
         double sideC = countSide(triangle.getFirst(), triangle.getThird());
-        return Math.abs(sideA * sideA + sideB * sideB - sideC * sideC)<eps ||
-                Math.abs(sideB * sideB + sideC * sideC - sideA * sideA)<eps ||
-                Math.abs(sideA * sideA + sideC * sideC - sideB * sideB)<eps;
+        return Math.abs(sideA * sideA + sideB * sideB - sideC * sideC) < eps ||
+                Math.abs(sideB * sideB + sideC * sideC - sideA * sideA) < eps ||
+                Math.abs(sideA * sideA + sideC * sideC - sideB * sideB) < eps;
     }
 
     //тупоугольный
