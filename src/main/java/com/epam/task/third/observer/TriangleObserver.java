@@ -3,16 +3,20 @@ package com.epam.task.third.observer;
 
 import com.epam.task.third.figures.logics.TriangleCalculator;
 import com.epam.task.third.parameters.Parameters;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class TriangleObserver implements Observer {
+    private static Logger LOGGER = LogManager.getLogger(TriangleObserver.class);
     private static TriangleObserver instance;
     private TriangleCalculator calculator = new TriangleCalculator();
     private Map<Integer, Parameters> parametersMap = new HashMap<Integer, Parameters>();
 
     private TriangleObserver() {
+        LOGGER.info("Singleton TriangleObserver created");
     }
 
     public static TriangleObserver getInstance() {
